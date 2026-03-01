@@ -1,0 +1,47 @@
+[
+  {
+    "name": "1:1 Classic",
+    "price": "160",
+    "desc": "Naturalne przedłużenie rzęs dla subtelnego podkreślenia spojrzenia."
+  },
+  {
+    "name": "Light Volume (2D-3D)",
+    "price": "190",
+    "desc": "Delikatne zagęszczenie tworzące efekt puszystych rzęs."
+  },
+  {
+    "name": "Mega Volume (4D-8D)",
+    "price": "230",
+    "desc": "Spektakularny efekt dla kobiet ceniących wyrazisty wygląd."
+  },
+  {
+    "name": "Kim Camellia / Wispy",
+    "price": "210",
+    "desc": "Artystyczna stylizacja z efektem postrzępionej linii rzęs."
+  },
+  {
+    "name": "Uzupełnienie (do 3 tygodni)",
+    "price": "140",
+    "desc": "Odświeżenie stylizacji i uzupełnienie ubytków dla stałych klientek."
+  },
+  {
+    "name": "Ściągnięcie rzęs",
+    "price": "40",
+    "desc": "Bezpieczne usunięcie sztucznych rzęs (darmowe przed nową aplikacją)."
+  },
+  {
+    "name": "Lifting i Laminacja Rzęs",
+    "price": "150",
+    "desc": "Trwałe podkręcenie, przyciemnienie i odżywienie naturalnych rzęs botoksem."
+  },
+  {
+    "name": "Architektura + Henna Pudrowa",
+    "price": "90",
+    "desc": "Geometria brwi, regulacja i trwałe farbowanie dopasowane do rysów twarzy."
+  },
+  {
+    "name": "Laminacja Brwi z koloryzacją",
+    "price": "160",
+    "desc": "Trwałe ułożenie niesfornych włosków, farbowanie i odżywczy botoks."
+  }
+]
