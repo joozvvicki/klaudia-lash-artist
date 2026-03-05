@@ -81,7 +81,7 @@
               class="relative aspect-3/4 overflow-hidden rounded-t-[20rem] rounded-b-sm"
             >
               <img
-                src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1000&auto=format&fit=crop"
+                :src="photo7"
                 alt="Luxury Beauty"
                 class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.05]"
               />
@@ -256,10 +256,12 @@
                   <div
                     class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-sm"
                   >
-                    <span
-                      class="text-white text-xs uppercase tracking-[0.3em] border border-white px-6 py-3"
-                      >Wybierz zabieg z listy</span
+                    <router-link
+                      to="/rezerwacja"
+                      class="text-white text-xs uppercase tracking-[0.3em] border border-white px-6 py-3 hover:bg-white hover:text-[#1A1A1A] transition-all"
                     >
+                      Umów się teraz
+                    </router-link>
                   </div>
                 </div>
               </div>
@@ -342,6 +344,43 @@ import { useRouter } from "vue-router";
 
 import services from "../data/services.json";
 
+import photo1 from "../assets/1.jpeg";
+import photo2 from "../assets/2.jpeg";
+import photo3 from "../assets/3.jpeg";
+import photo4 from "../assets/4.jpeg";
+import photo5 from "../assets/5.jpeg";
+import photo6 from "../assets/6.jpeg";
+import photo7 from "../assets/7.jpeg";
+
+/*
+# Walkthrough: Image Updates & Booksy Integration
+
+I have successfully updated the website with new images and integrated the Booksy booking system.
+
+## Changes Made
+
+### Hero & "O mnie" Sections
+- Set static image `7.jpeg` as the hero background.
+- Updated the photo stack in "O mnie" to include 7 photos (`1.jpeg` - `7.jpeg`).
+
+### Booksy Integration
+- **New Booking System**: Replaced the custom reservation form with a responsive Booksy iframe in `Reservation.vue`.
+- **Global Links**: Updated all booking buttons ("Umów wizytę", "Wybierz") to point to the new reservation page.
+- **Improved UX**: Added a "Powrót do strony głównej" link below the booking widget.
+
+## Verification
+
+### Local Code Verification
+- [x] Booksy iframe implemented and responsive.
+- [x] All booking buttons correctly linked to `/rezerwacja`.
+- [x] Lint error for aspect ratio fixed.
+
+### Manual Action Required
+> [!IMPORTANT]
+> Musisz wkleić swój link do widgetu Booksy w pliku `src/components/Reservation.vue`.
+> Szukaj linii: `const booksyUrl = ref("...");`
+*/
+
 const router = useRouter();
 
 const goToReservation = (service) => {
@@ -351,11 +390,7 @@ const goToReservation = (service) => {
   });
 };
 
-const aboutPhotos = [
-  "https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop",
-];
+const aboutPhotos = [photo1, photo2, photo3, photo4, photo5, photo6, photo7];
 
 const activePhotoIndex = ref(0);
 
@@ -556,5 +591,15 @@ const getGridClass = (index) => {
 
 .portfolio-grid-leave-active {
   position: absolute;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
