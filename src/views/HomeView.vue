@@ -1,12 +1,12 @@
 <template>
   <div
-    class="min-h-screen bg-[#FCFAF8] text-[#1A1A1A] font-sans selection:bg-[#C5A059]/30 selection:text-[#1A1A1A]"
+    class="min-h-screen bg-[#FCFAF8] text-[#1A1A1A] font-sans selection:bg-[#F2BFC6]/30 selection:text-[#1A1A1A]"
   >
     <header
       class="relative min-h-screen flex items-center pt-24 overflow-hidden"
     >
       <div
-        class="absolute top-0 right-0 w-1/2 h-full bg-linear-to-b from-[#C5A059]/5 to-transparent -z-10"
+        class="absolute top-0 right-0 w-1/2 h-full bg-linear-to-b from-[#F2BFC6]/5 to-transparent -z-10"
       ></div>
 
       <div
@@ -15,7 +15,7 @@
         <div class="lg:col-span-7 space-y-8 z-10 pt-10 lg:pt-0">
           <div class="overflow-hidden">
             <span
-              class="inline-block border border-[#C5A059]/30 rounded-full px-4 py-1 text-[#C5A059] uppercase tracking-[0.4em] text-[10px] font-semibold animate-reveal-1"
+              class="inline-block border border-[#F2BFC6]/30 rounded-full px-4 py-1 text-[#F2BFC6] uppercase tracking-[0.4em] text-[10px] font-semibold animate-reveal-1"
             >
               Premium Beauty Experience
             </span>
@@ -29,7 +29,7 @@
             </span>
             <span class="overflow-hidden pb-4">
               <span
-                class="inline-block italic font-light text-[#C5A059] animate-reveal-3"
+                class="inline-block italic font-light text-[#F2BFC6] animate-reveal-3"
                 >swoje piękno.</span
               >
             </span>
@@ -47,7 +47,7 @@
           >
             <router-link
               to="/rezerwacja"
-              class="bg-[#1A1A1A] text-white px-10 py-5 hover:bg-[#C5A059] hover:-translate-y-1 transition-all duration-500 text-xs uppercase tracking-[0.3em] font-semibold shadow-xl shadow-[#1A1A1A]/10 text-center"
+              class="bg-[#1A1A1A] text-white px-10 py-5 hover:bg-[#F2BFC6] hover:-translate-y-1 transition-all duration-500 text-xs uppercase tracking-[0.3em] font-semibold shadow-xl shadow-[#1A1A1A]/10 text-center"
             >
               Umów wizytę
             </router-link>
@@ -68,14 +68,14 @@
           class="lg:col-span-5 relative group mt-10 lg:mt-0 animate-reveal-6 opacity-0 [animation-fill-mode:forwards]"
         >
           <div
-            class="absolute -bottom-10 -left-10 w-72 h-72 bg-[#C5A059]/20 rounded-full blur-3xl z-0 animate-float"
+            class="absolute -bottom-10 -left-10 w-72 h-72 bg-[#F2BFC6]/20 rounded-full blur-3xl z-0 animate-float"
           ></div>
           <div
-            class="absolute top-10 -right-10 w-56 h-56 bg-[#eaddc5] rounded-full blur-3xl z-0 animate-float-delayed"
+            class="absolute top-10 -right-10 w-56 h-56 bg-[#F8E1E1] rounded-full blur-3xl z-0 animate-float-delayed"
           ></div>
 
           <div
-            class="relative z-10 p-2 border border-[#C5A059]/30 rounded-t-[20rem] rounded-b-md bg-white/50 backdrop-blur-sm shadow-2xl"
+            class="relative z-10 p-2 border border-[#F2BFC6]/30 rounded-t-[20rem] rounded-b-md bg-white/50 backdrop-blur-sm shadow-2xl"
           >
             <div
               class="relative aspect-3/4 overflow-hidden rounded-t-[20rem] rounded-b-sm"
@@ -96,11 +96,11 @@
       <div
         class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 animate-bounce-slow"
       >
-        <span class="text-[9px] uppercase tracking-[0.4em] text-[#C5A059]"
+        <span class="text-[9px] uppercase tracking-[0.4em] text-[#F2BFC6]"
           >Scroll</span
         >
         <div
-          class="w-px h-12 bg-linear-to-b from-[#C5A059] to-transparent"
+          class="w-px h-12 bg-linear-to-b from-[#F2BFC6] to-transparent"
         ></div>
       </div>
     </header>
@@ -111,7 +111,7 @@
       >
         <div class="space-y-8 order-2 lg:order-1 relative z-10">
           <span
-            class="text-[#C5A059] uppercase tracking-[0.4em] text-[11px] font-bold"
+            class="text-[#F2BFC6] uppercase tracking-[0.4em] text-[11px] font-bold"
             >O Mnie</span
           >
           <h2
@@ -120,20 +120,16 @@
             Pasja ukryta <br />w każdym detalu.
           </h2>
           <div
-            class="space-y-6 text-[#1A1A1A]/70 text-lg leading-relaxed font-light"
+            class="space-y-6 text-[#1A1A1A]/70 text-lg leading-relaxed font-light min-h-[120px]"
           >
-            <p>
-              Nazywam się Klaudia i od ponad 6 lat pomagam kobietom odkrywać ich
-              naturalne piękno poprzez profesjonalną stylizację oprawy oka.
-            </p>
-            <p>
-              Moja praca to połączenie technicznej precyzji z artystyczną wizją.
-              Każda aplikacja jest dla mnie jak tworzenie unikalnego dzieła
-              sztuki, dostosowanego do Twoich rysów twarzy i stylu życia.
-            </p>
+            <transition name="page" mode="out-in">
+              <p :key="activePhotoIndex">
+                {{ aboutContent[activePhotoIndex].desc }}
+              </p>
+            </transition>
           </div>
           <div class="flex items-center gap-4 pt-4">
-            <div class="w-12 h-px bg-[#C5A059]"></div>
+            <div class="w-12 h-px bg-[#F2BFC6]"></div>
             <span class="italic font-serif text-xl text-[#1A1A1A]"
               >Twoja Lash Artystka</span
             >
@@ -145,7 +141,7 @@
         >
           <div class="relative w-full max-w-[320px] aspect-4/5">
             <div
-              v-for="(photo, index) in aboutPhotos"
+              v-for="(photo, index) in aboutContent"
               :key="index"
               @click="setActivePhoto(index)"
               :class="[
@@ -154,11 +150,11 @@
               ]"
             >
               <div
-                class="w-full h-full bg-white p-3 pb-20 border border-[#1A1A1A]/5 group-hover:border-[#C5A059]/30 transition-colors duration-500 rounded-sm"
+                class="w-full h-full bg-white p-3 pb-20 border border-[#1A1A1A]/5 group-hover:border-[#F2BFC6]/30 transition-colors duration-500 rounded-sm"
                 :class="activePhotoIndex === index ? 'shadow-2xl' : 'shadow-lg'"
               >
                 <img
-                  :src="photo"
+                  :src="photo.url"
                   class="w-full h-full object-cover transition-all duration-700 rounded-sm"
                   :class="
                     activePhotoIndex === index
@@ -171,7 +167,7 @@
             </div>
           </div>
           <span
-            class="absolute -bottom-10 right-0 text-[140px] font-serif text-[#C5A059]/5 select-none pointer-events-none italic"
+            class="absolute -bottom-10 right-0 text-[140px] font-serif text-[#F2BFC6]/5 select-none pointer-events-none italic"
             >Art</span
           >
         </div>
@@ -185,7 +181,7 @@
         >
           <div class="space-y-4">
             <span
-              class="text-[#C5A059] uppercase tracking-[0.4em] text-[11px] font-bold"
+              class="text-[#F2BFC6] uppercase tracking-[0.4em] text-[11px] font-bold"
               >Nasze Usługi</span
             >
             <h2 class="text-5xl md:text-6xl font-serif max-w-xl text-[#1A1A1A]">
@@ -212,7 +208,7 @@
               >
                 <div class="space-y-1 pr-4">
                   <h3
-                    class="text-2xl font-serif transition-colors text-[#1A1A1A] group-hover:text-[#C5A059]"
+                    class="text-2xl font-serif transition-colors text-[#1A1A1A] group-hover:text-[#F2BFC6]"
                   >
                     {{ service.name }}
                   </h3>
@@ -225,13 +221,13 @@
                   class="text-right whitespace-nowrap relative min-w-[110px] h-20 flex flex-col justify-center items-end"
                 >
                   <span
-                    class="text-xl font-light text-[#C5A059] transition-all duration-300 absolute origin-right top-6 group-hover:top-2 group-hover:scale-90"
+                    class="text-xl font-light text-[#F2BFC6] transition-all duration-300 absolute origin-right top-6 group-hover:top-2 group-hover:scale-90"
                   >
                     {{ service.price }} zł
                   </span>
 
                   <span
-                    class="text-[9px] uppercase tracking-widest px-4 py-1.5 border border-[#C5A059] rounded-full transition-all duration-300 absolute bottom-2 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 text-[#C5A059]"
+                    class="text-[9px] uppercase tracking-widest px-4 py-1.5 border border-[#F2BFC6] rounded-full transition-all duration-300 absolute bottom-2 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 text-[#F2BFC6]"
                   >
                     Wybierz
                   </span>
@@ -243,7 +239,7 @@
           <div class="relative h-[600px] lg:h-auto">
             <div class="sticky top-32 aspect-4/5 w-full max-w-[450px] mx-auto">
               <div
-                class="absolute inset-0 bg-white p-2 border border-[#C5A059]/20 rounded-sm shadow-xl"
+                class="absolute inset-0 bg-white p-2 border border-[#F2BFC6]/20 rounded-sm shadow-xl"
               >
                 <div
                   class="w-full h-full overflow-hidden rounded-sm relative group"
@@ -275,7 +271,7 @@
       <div class="max-w-7xl mx-auto px-6 text-center">
         <div class="mb-20 space-y-4">
           <span
-            class="text-[#C5A059] uppercase tracking-[0.4em] text-[11px] font-bold"
+            class="text-[#F2BFC6] uppercase tracking-[0.4em] text-[11px] font-bold"
             >Nasze Portfolio</span
           >
           <h2
@@ -285,24 +281,30 @@
           </h2>
         </div>
 
-        <transition-group
-          name="portfolio-grid"
-          tag="div"
-          class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6"
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start"
         >
           <div
-            v-for="(item, index) in visibleGalleryItems"
-            :key="item.id"
-            @click="openLightbox(index)"
-            class="break-inside-avoid group relative overflow-hidden rounded-sm cursor-pointer shadow-sm transition-shadow duration-700 hover:shadow-2xl bg-[#1A1A1A]"
+            v-for="(column, colIdx) in columnsGallery"
+            :key="colIdx"
+            class="flex flex-col gap-6"
           >
-            <img
-              :src="item.url"
-              :alt="item.title"
-              class="w-full h-auto object-cover transition-all duration-1000 group-hover:scale-105"
-            />
+            <transition-group name="portfolio-grid">
+              <div
+                v-for="item in column"
+                :key="item.id"
+                @click="openLightboxByItem(item)"
+                class="group relative overflow-hidden rounded-sm cursor-pointer shadow-sm transition-shadow duration-700 hover:shadow-2xl bg-[#1A1A1A]"
+              >
+                <img
+                  :src="item.url"
+                  :alt="item.title"
+                  class="w-full h-auto object-cover transition-all duration-1000 group-hover:scale-105"
+                />
+              </div>
+            </transition-group>
           </div>
-        </transition-group>
+        </div>
 
         <!-- Lightbox -->
         <Teleport to="body">
@@ -361,19 +363,14 @@
           </transition>
         </Teleport>
 
-        <div class="mt-20 flex justify-center" v-if="hasMoreImages">
-          <button
-            @click="loadMoreImages"
-            class="relative group px-12 py-5 overflow-hidden border border-[#1A1A1A]/20 rounded-full"
-          >
-            <span
-              class="relative z-10 text-[10px] uppercase tracking-[0.4em] font-bold group-hover:text-white transition-colors duration-500 text-[#1A1A1A]"
-              >Załaduj więcej prac</span
-            >
-            <div
-              class="absolute inset-0 bg-[#1A1A1A] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-bottom ease-out"
-            ></div>
-          </button>
+        <div
+          ref="loadMoreTrigger"
+          class="h-20 flex justify-center items-center"
+          v-if="hasMoreImages"
+        >
+          <div
+            class="w-6 h-6 border-2 border-[#F2BFC6]/30 border-t-[#F2BFC6] rounded-full animate-spin"
+          ></div>
         </div>
       </div>
     </section>
@@ -405,6 +402,7 @@ import port6 from "../assets/portfolio/9CB6A21C-DAF5-4510-99A5-F4CBF42B46EC.jpg"
 import port7 from "../assets/portfolio/E491B092-1961-4067-90E7-D883DBEFC4D9.jpeg";
 import port8 from "../assets/portfolio/E8ACA92F-C695-4E30-ABE6-533A09AB07F8.jpeg";
 import port9 from "../assets/portfolio/E9678AFD-D1E5-4A14-B99A-A59D4197B76F.jpg";
+import port11 from "../assets/portfolio/4077F9EA-53AE-40D1-AE0C-A29C60798B0A_1_201_a.jpeg";
 
 /*
 # Walkthrough: Image Updates & Booksy Integration
@@ -444,17 +442,56 @@ const goToReservation = (service) => {
   });
 };
 
-const aboutPhotos = [photo1, photo2, photo3, photo4, photo5, photo6, photo7];
+const aboutContent = [
+  {
+    url: photo1,
+    desc: "Precyzja to mój fundament. Każda rzęsa to dla mnie odrębna historia, którą wspólnie piszemy każdego dnia w moim studio.",
+  },
+  {
+    url: photo2,
+    desc: "Relaks i piękno idą w parze. Tworzę przestrzeń, w której możesz na chwilę zapomnieć o świecie i skupić się wyłącznie na sobie.",
+  },
+  {
+    url: photo3,
+    desc: "Naturalność przede wszystkim. Wydobywam to, co w Tobie najpiękniejsze, podkreślając spojrzenie w sposób subtelny i autentyczny.",
+  },
+  {
+    url: photo4,
+    desc: "Moja pracownia to miejsce magiczne, gdzie techniczna precyzja spotyka się z pasją i kobiecą energią, której potrzebujesz.",
+  },
+  {
+    url: photo5,
+    desc: "Ciągły rozwój to moja obietnica. Regularnie szkolę się u najlepszych ekspertów, by oferować Ci najnowsze światowe trendy.",
+  },
+  {
+    url: photo6,
+    desc: "Najwyższa jakość produktów to standard, na którym nie uznaję kompromisów. Twoje bezpieczeństwo i komfort są dla mnie priorytetem.",
+  },
+  {
+    url: photo7,
+    desc: "Twoje zadowolenie i uśmiech po spojrzeniu w lustro to moja największa nagroda. To dla tych chwil kocham to, co robię.",
+  },
+];
 
 const activePhotoIndex = ref(0);
+let aboutTimer = null;
+
+const startAboutTimer = () => {
+  if (aboutTimer) clearInterval(aboutTimer);
+  aboutTimer = setInterval(() => {
+    activePhotoIndex.value = (activePhotoIndex.value + 1) % aboutContent.length;
+  }, 7000);
+};
 
 const setActivePhoto = (index) => {
   activePhotoIndex.value = index;
+  startAboutTimer(); // Reset timer on manual click
 };
 
 const getPhotoClass = (index) => {
   const diff =
-    (index - activePhotoIndex.value + aboutPhotos.length) % aboutPhotos.length;
+    (index - activePhotoIndex.value + aboutContent.length) %
+    aboutContent.length;
 
   if (diff === 0) {
     return "z-30 scale-100 rotate-0 translate-y-0 translate-x-0";
@@ -528,6 +565,12 @@ const allGalleryItems = [
     category: "Rzęsy",
     url: port10,
   },
+  {
+    id: 11,
+    title: "Nowoczesna stylizacja",
+    category: "Rzęsy",
+    url: port11,
+  },
 ];
 
 const visibleCount = ref(6);
@@ -536,22 +579,44 @@ const visibleGalleryItems = computed(() => {
   return allGalleryItems.slice(0, visibleCount.value);
 });
 
+const columnsGallery = computed(() => {
+  const cols = [[], [], [], []];
+  visibleGalleryItems.value.forEach((item, index) => {
+    cols[index % 4].push(item);
+  });
+  return cols;
+});
+
 const hasMoreImages = computed(() => {
   return visibleCount.value < allGalleryItems.length;
 });
 
 const loadMoreImages = () => {
-  visibleCount.value += 4;
+  if (visibleCount.value < allGalleryItems.length) {
+    visibleCount.value = Math.min(
+      visibleCount.value + 4,
+      allGalleryItems.length,
+    );
+  }
 };
 
 // Lightbox logic
 const isLightboxOpen = ref(false);
 const activeLightboxIndex = ref(0);
 
+// Infinite Scroll logic
+const loadMoreTrigger = ref(null);
+let observer = null;
+
 const openLightbox = (index) => {
   activeLightboxIndex.value = index;
   isLightboxOpen.value = true;
   document.body.style.overflow = "hidden";
+};
+
+const openLightboxByItem = (item) => {
+  const index = allGalleryItems.findIndex((i) => i.id === item.id);
+  openLightbox(index);
 };
 
 const closeLightbox = () => {
@@ -579,10 +644,26 @@ const handleKeydown = (e) => {
 
 onMounted(() => {
   window.addEventListener("keydown", handleKeydown);
+  startAboutTimer();
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting && hasMoreImages.value) {
+        loadMoreImages();
+      }
+    },
+    { threshold: 0.1 },
+  );
+
+  if (loadMoreTrigger.value) {
+    observer.observe(loadMoreTrigger.value);
+  }
 });
 
 onUnmounted(() => {
   window.removeEventListener("keydown", handleKeydown);
+  if (observer) observer.disconnect();
+  if (aboutTimer) clearInterval(aboutTimer);
 });
 </script>
 

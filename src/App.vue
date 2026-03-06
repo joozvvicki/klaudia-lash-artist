@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-[#FCFAF8] text-[#1A1A1A] font-sans selection:bg-[#C5A059]/30 selection:text-[#1A1A1A]"
+    class="min-h-screen bg-[#FCFAF8] text-[#1A1A1A] font-sans selection:bg-[#F2BFC6]/30 selection:text-[#1A1A1A]"
   >
     <nav
       class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-[#1A1A1A]/5 transition-all duration-300"
@@ -8,18 +8,12 @@
       <div
         class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between"
       >
-        <router-link
-          to="/"
-          class="flex flex-col items-center group cursor-pointer"
-        >
-          <span
-            class="text-3xl font-serif tracking-[0.2em] uppercase transition-colors duration-500 group-hover:text-[#C5A059]"
-            >Klaudia</span
-          >
-          <span
-            class="text-[9px] tracking-[0.5em] uppercase text-[#C5A059] -mt-1 font-light"
-            >Lash Artist</span
-          >
+        <router-link to="/" class="flex items-center group cursor-pointer">
+          <img
+            src="/logo.png"
+            alt="Klaudia Lash Artist Logo"
+            class="h-12 w-auto logo-pink-filter transition-all duration-500"
+          />
         </router-link>
 
         <div
@@ -30,27 +24,27 @@
               v-if="link.href.startsWith('#')"
               :href="isHomePage ? link.href : '/' + link.href"
               @click="handleNavClick($event, link.href)"
-              class="hover:text-[#C5A059] transition-colors duration-300 relative group"
+              class="hover:text-[#F2BFC6] transition-colors duration-300 relative group"
             >
               {{ link.name }}
               <span
-                class="absolute -bottom-1 left-0 w-0 h-px bg-[#C5A059] transition-all duration-500 group-hover:w-full"
+                class="absolute -bottom-1 left-0 w-0 h-px bg-[#F2BFC6] transition-all duration-500 group-hover:w-full"
               ></span>
             </a>
             <router-link
               v-else
               :to="link.href"
-              class="hover:text-[#C5A059] transition-colors duration-300 relative group"
+              class="hover:text-[#F2BFC6] transition-colors duration-300 relative group"
             >
               {{ link.name }}
               <span
-                class="absolute -bottom-1 left-0 w-0 h-px bg-[#C5A059] transition-all duration-500 group-hover:w-full"
+                class="absolute -bottom-1 left-0 w-0 h-px bg-[#F2BFC6] transition-all duration-500 group-hover:w-full"
               ></span>
             </router-link>
           </template>
           <router-link
             to="/rezerwacja"
-            class="bg-[#1A1A1A] text-white px-8 py-3 hover:bg-[#C5A059] transition-all duration-500 rounded-sm"
+            class="bg-[#1A1A1A] text-white px-8 py-3 hover:bg-[#F2BFC6] transition-all duration-500 rounded-sm"
           >
             Rezerwacja
           </router-link>
@@ -81,22 +75,19 @@
       class="bg-[#111] text-white py-32 relative overflow-hidden"
     >
       <div
-        class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C5A059]/5 rounded-full blur-[100px] pointer-events-none"
+        class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#F2BFC6]/5 rounded-full blur-[100px] pointer-events-none"
       ></div>
 
       <div
         class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 relative z-10"
       >
         <div class="lg:col-span-2 space-y-10">
-          <div class="flex flex-col items-start">
-            <span
-              class="text-4xl font-serif tracking-[0.2em] uppercase text-[#C5A059]"
-              >Klaudia</span
-            >
-            <span
-              class="text-[10px] tracking-[0.5em] uppercase text-white/40 mt-1"
-              >Lash Artist</span
-            >
+          <div class="flex flex-col items-start translate-x-[-15px]">
+            <img
+              src="/logo.png"
+              alt="Klaudia Lash Artist Logo"
+              class="h-20 w-auto logo-pink-filter transition-all duration-500"
+            />
           </div>
           <p class="max-w-sm text-white/50 text-sm leading-relaxed font-light">
             Tworzymy piękno oparte na zaufaniu i profesjonalizmie. Zapraszam do
@@ -106,51 +97,51 @@
 
         <div class="space-y-8">
           <h4
-            class="text-[#C5A059] uppercase tracking-[0.3em] text-xs font-semibold"
+            class="text-[#F2BFC6] uppercase tracking-[0.3em] text-xs font-semibold"
           >
             Kontakt
           </h4>
           <ul class="space-y-4 text-sm text-white/70 font-light">
             <li class="flex flex-col gap-1">
               <span
-                class="text-[10px] uppercase tracking-widest text-[#C5A059]/60"
+                class="text-[10px] uppercase tracking-widest text-[#F2BFC6]/60"
                 >Telefon</span
               >
               <span
-                class="hover:text-[#C5A059] transition-colors cursor-pointer"
-                >+48 500 600 700</span
+                class="hover:text-[#F2BFC6] transition-colors cursor-pointer"
+                >+48 508 746 780</span
               >
             </li>
             <li class="flex flex-col gap-1 mt-4">
               <span
-                class="text-[10px] uppercase tracking-widest text-[#C5A059]/60"
+                class="text-[10px] uppercase tracking-widest text-[#F2BFC6]/60"
                 >Adres</span
               >
-              <span>ul. Piękna 15<br />00-549 Warszawa</span>
+              <span>ul. Marii Konopnickiej 34<br />08-440 Pilawa</span>
             </li>
           </ul>
         </div>
 
         <div class="space-y-8">
           <h4
-            class="text-[#C5A059] uppercase tracking-[0.3em] text-xs font-semibold"
+            class="text-[#F2BFC6] uppercase tracking-[0.3em] text-xs font-semibold"
           >
             Obserwuj
           </h4>
           <div class="flex flex-col space-y-4 text-white/70 font-light">
             <a
-              href="#"
-              class="hover:text-[#C5A059] transition-colors inline-block w-fit"
+              href="https://www.instagram.com/klaudia_lashartist/?hl=en"
+              class="hover:text-[#F2BFC6] transition-colors inline-block w-fit"
               >Instagram</a
             >
             <a
-              href="#"
-              class="hover:text-[#C5A059] transition-colors inline-block w-fit"
+              href="https://www.facebook.com/p/Klaudia-Lash-Artist-100086759595793/"
+              class="hover:text-[#F2BFC6] transition-colors inline-block w-fit"
               >Facebook</a
             >
             <a
-              href="#"
-              class="hover:text-[#C5A059] transition-colors inline-block w-fit"
+              href="https://www.tiktok.com/@klaudia.lash.artist"
+              class="hover:text-[#F2BFC6] transition-colors inline-block w-fit"
               >TikTok</a
             >
           </div>
@@ -161,10 +152,7 @@
         class="max-w-7xl mx-auto px-6 mt-32 pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10"
       >
         <span class="text-[9px] uppercase tracking-[0.4em] text-white/30"
-          >© 2024 Klaudia Beauty. All rights reserved.</span
-        >
-        <span class="text-[9px] uppercase tracking-[0.4em] text-white/30"
-          >Design by Antigravity</span
+          >© 2026 Klaudia Lash Artist. All rights reserved.</span
         >
       </div>
     </footer>
@@ -199,7 +187,7 @@ const navLinks = [
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap");
 
 :root {
-  --primary: #c5a059;
+  --primary: #f2bfc6;
   --bg: #fcfaf8;
   --text: #1a1a1a;
 }
@@ -227,5 +215,18 @@ const navLinks = [
 .page-leave-to {
   opacity: 0;
   transform: translateY(-10px);
+}
+
+.logo-pink-filter {
+  transition: all 0.5s ease;
+  opacity: 0.9;
+}
+
+.logo-pink-filter:hover {
+  /* Targeted filter for #F2BFC6 (Pastel Pink) */
+  filter: invert(90%) sepia(15%) saturate(900%) hue-rotate(300deg)
+    brightness(102%) contrast(95%);
+  opacity: 1;
+  transform: scale(1.05);
 }
 </style>

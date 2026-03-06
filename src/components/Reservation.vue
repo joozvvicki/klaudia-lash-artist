@@ -1,11 +1,11 @@
 <template>
   <div
-    class="min-h-screen bg-[#FCFAF8] pt-32 pb-20 px-6 font-sans selection:bg-[#C5A059]/20"
+    class="min-h-screen bg-[#FCFAF8] pt-32 pb-20 px-6 font-sans selection:bg-[#F2BFC6]/20"
   >
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12 space-y-4">
         <span
-          class="text-[#C5A059] uppercase tracking-[0.4em] text-[10px] font-bold"
+          class="text-[#F2BFC6] uppercase tracking-[0.4em] text-[10px] font-bold"
           >Rezerwacja Online</span
         >
         <h1 class="text-5xl font-serif text-[#1A1A1A]">Zarezerwuj wizytę</h1>
@@ -20,22 +20,22 @@
         >
           <!-- Subtle decorative elements -->
           <div
-            class="absolute top-0 right-0 w-64 h-64 bg-[#C5A059]/5 rounded-full blur-3xl -mr-32 -mt-32"
+            class="absolute top-0 right-0 w-64 h-64 bg-[#F2BFC6]/5 rounded-full blur-3xl -mr-32 -mt-32"
           ></div>
           <div
-            class="absolute bottom-0 left-0 w-48 h-48 bg-[#C5A059]/5 rounded-full blur-3xl -ml-24 -mb-24"
+            class="absolute bottom-0 left-0 w-48 h-48 bg-[#F2BFC6]/5 rounded-full blur-3xl -ml-24 -mb-24"
           ></div>
 
           <div class="relative z-10 space-y-6">
             <span
-              class="text-[#C5A059] uppercase tracking-[0.5em] text-[10px] font-bold"
+              class="text-[#F2BFC6] uppercase tracking-[0.5em] text-[10px] font-bold"
               >System Rezerwacji</span
             >
             <h2
               class="text-4xl md:text-5xl font-serif text-[#1A1A1A] leading-tight"
             >
               Twój czas jest cennym <br /><span
-                class="italic text-[#C5A059] font-light"
+                class="italic text-[#F2BFC6] font-light"
                 >symbolem piękna.</span
               >
             </h2>
@@ -51,7 +51,7 @@
             <a
               :href="booksyUrl"
               target="_blank"
-              class="inline-block bg-[#1A1A1A] text-white px-12 py-6 hover:bg-[#C5A059] hover:-translate-y-1 transition-all duration-500 text-[11px] uppercase tracking-[0.4em] font-bold shadow-2xl shadow-[#1A1A1A]/20"
+              class="inline-block bg-[#1A1A1A] text-white px-12 py-6 hover:bg-[#F2BFC6] hover:-translate-y-1 transition-all duration-500 text-[11px] uppercase tracking-[0.4em] font-bold shadow-2xl shadow-[#1A1A1A]/20"
             >
               Zarezerwuj przez Booksy
             </a>
@@ -67,7 +67,7 @@
       <div class="mt-12 text-center">
         <router-link
           to="/"
-          class="text-[10px] uppercase tracking-[0.4em] text-[#1A1A1A]/40 hover:text-[#C5A059] transition-colors"
+          class="text-[10px] uppercase tracking-[0.4em] text-[#1A1A1A]/40 hover:text-[#F2BFC6] transition-colors"
         >
           ← Powrót do strony głównej
         </router-link>
