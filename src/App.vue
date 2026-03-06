@@ -215,8 +215,8 @@ const navLinks = [
 .page-enter-active,
 .page-leave-active {
   transition:
-    opacity 0.4s ease,
-    transform 0.4s ease;
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .page-enter-from {

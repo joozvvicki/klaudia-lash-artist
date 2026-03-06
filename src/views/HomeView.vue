@@ -288,36 +288,78 @@
         <transition-group
           name="portfolio-grid"
           tag="div"
-          class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[250px]"
+          class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6"
         >
           <div
             v-for="(item, index) in visibleGalleryItems"
             :key="item.id"
-            :class="[
-              getGridClass(index),
-              'group relative overflow-hidden rounded-sm cursor-pointer shadow-sm transition-shadow duration-700 hover:shadow-2xl bg-[#1A1A1A]',
-            ]"
+            @click="openLightbox(index)"
+            class="break-inside-avoid group relative overflow-hidden rounded-sm cursor-pointer shadow-sm transition-shadow duration-700 hover:shadow-2xl bg-[#1A1A1A]"
           >
             <img
               :src="item.url"
               :alt="item.title"
-              class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 grayscale-20 group-hover:grayscale-0 opacity-90 group-hover:opacity-100"
+              class="w-full h-auto object-cover transition-all duration-1000 group-hover:scale-105"
             />
-            <div
-              class="absolute inset-0 bg-linear-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 text-left"
-            >
-              <span
-                class="text-[#C5A059] text-[10px] uppercase tracking-widest mb-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
-                >{{ item.category }}</span
-              >
-              <h3
-                class="text-white text-xl font-serif translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75"
-              >
-                {{ item.title }}
-              </h3>
-            </div>
           </div>
         </transition-group>
+
+        <!-- Lightbox -->
+        <Teleport to="body">
+          <transition name="fade">
+            <div
+              v-if="isLightboxOpen"
+              class="fixed inset-0 z-100 flex items-center justify-center bg-[#1A1A1A]/95 backdrop-blur-xl"
+              @click.self="closeLightbox"
+            >
+              <button
+                @click="closeLightbox"
+                class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-110"
+              >
+                <span class="text-xs uppercase tracking-[0.4em] font-light"
+                  >Zamknij</span
+                >
+              </button>
+
+              <div
+                class="relative w-full h-full flex items-center justify-center p-6 md:p-20"
+              >
+                <button
+                  @click="prevLightboxImage"
+                  class="absolute left-4 md:left-8 w-12 h-12 flex items-center justify-center text-white/30 hover:text-white transition-all z-110"
+                >
+                  <span class="text-3xl font-light">←</span>
+                </button>
+
+                <div
+                  class="relative max-w-5xl max-h-full overflow-hidden flex flex-col items-center"
+                >
+                  <transition name="page" mode="out-in">
+                    <img
+                      :key="activeLightboxIndex"
+                      :src="allGalleryItems[activeLightboxIndex].url"
+                      class="max-w-full max-h-[90vh] object-contain shadow-2xl transition-transform duration-300"
+                    />
+                  </transition>
+                </div>
+
+                <button
+                  @click="nextLightboxImage"
+                  class="absolute right-4 md:right-8 w-12 h-12 flex items-center justify-center text-white/30 hover:text-white transition-all z-110"
+                >
+                  <span class="text-3xl font-light">→</span>
+                </button>
+              </div>
+
+              <!-- Counter -->
+              <div
+                class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/30 text-[10px] uppercase tracking-[0.4em]"
+              >
+                {{ activeLightboxIndex + 1 }} / {{ allGalleryItems.length }}
+              </div>
+            </div>
+          </transition>
+        </Teleport>
 
         <div class="mt-20 flex justify-center" v-if="hasMoreImages">
           <button
@@ -339,7 +381,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref, onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
 
 import services from "../data/services.json";
@@ -351,6 +393,18 @@ import photo4 from "../assets/4.jpeg";
 import photo5 from "../assets/5.jpeg";
 import photo6 from "../assets/6.jpeg";
 import photo7 from "../assets/7.jpeg";
+
+// Portfolio images
+import port1 from "../assets/portfolio/0B5ADDEB-41F1-40C5-B855-48E571DBDC2E.jpeg";
+import port2 from "../assets/portfolio/35C10A06-B05E-4472-8EEB-4E72D8BA6D8D.jpeg";
+import port3 from "../assets/portfolio/67D062B7-8FCD-4BC1-AB22-A42E55AAF9FE.jpeg";
+import port4 from "../assets/portfolio/80CB62C6-0FBA-40B6-8DD7-3FF073962B23.jpeg";
+import port5 from "../assets/portfolio/9C6B0D30-ADE0-4655-8175-067A60F63D03.jpeg";
+import port10 from "../assets/portfolio/07D8ED06-645C-4643-A742-F6A9B7F0E761.jpeg";
+import port6 from "../assets/portfolio/9CB6A21C-DAF5-4510-99A5-F4CBF42B46EC.jpg";
+import port7 from "../assets/portfolio/E491B092-1961-4067-90E7-D883DBEFC4D9.jpeg";
+import port8 from "../assets/portfolio/E8ACA92F-C695-4E30-ABE6-533A09AB07F8.jpeg";
+import port9 from "../assets/portfolio/E9678AFD-D1E5-4A14-B99A-A59D4197B76F.jpg";
 
 /*
 # Walkthrough: Image Updates & Booksy Integration
@@ -416,63 +470,63 @@ const prices = services;
 const allGalleryItems = [
   {
     id: 1,
-    title: "Classic 1:1 Perfection",
+    title: "Ekskluzywna stylizacja rzęs",
     category: "Rzęsy",
-    url: "https://images.unsplash.com/photo-1582211594533-268f4f1edeb9?q=80&w=1000&auto=format&fit=crop",
+    url: port1,
   },
   {
     id: 2,
-    title: "Light Volume Magic",
+    title: "Głębokie spojrzenie",
     category: "Rzęsy",
-    url: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000&auto=format&fit=crop",
+    url: port2,
   },
   {
     id: 3,
-    title: "Brow Lamination Art",
-    category: "Brwi",
-    url: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1000&auto=format&fit=crop",
+    title: "Naturalny efekt",
+    category: "Rzęsy",
+    url: port3,
   },
   {
     id: 4,
-    title: "Mega Volume Drama",
+    title: "Precyzyjna aplikacja",
     category: "Rzęsy",
-    url: "https://images.unsplash.com/photo-1583001838051-dc7930495679?q=80&w=1000&auto=format&fit=crop",
+    url: port4,
   },
   {
     id: 5,
-    title: "Artistic Lash Set",
-    category: "Art",
-    url: "https://images.unsplash.com/photo-1481325544412-f967116167c7?q=80&w=1000&auto=format&fit=crop",
+    title: "Perfekcyjna objętość",
+    category: "Rzęsy",
+    url: port5,
   },
   {
     id: 6,
-    title: "Natural Definition",
-    category: "Brwi",
-    url: "https://images.unsplash.com/photo-1621333104439-444754593ce8?q=80&w=1000&auto=format&fit=crop",
+    title: "Lash Art Setup",
+    category: "Warsztat",
+    url: port6,
   },
   {
     id: 7,
-    title: "Subtle Enhancement",
+    title: "Efekt Glamour",
     category: "Rzęsy",
-    url: "https://images.unsplash.com/photo-1512495039889-52a3b799c9bc?q=80&w=1000&auto=format&fit=crop",
+    url: port7,
   },
   {
     id: 8,
-    title: "Fluffy Brows",
-    category: "Brwi",
-    url: "https://images.unsplash.com/photo-1520466809213-7b9a56adcd45?q=80&w=1000&auto=format&fit=crop",
+    title: "Delikatne podkreślenie",
+    category: "Rzęsy",
+    url: port8,
   },
   {
     id: 9,
-    title: "Wet Look Effect",
-    category: "Rzęsy",
-    url: "https://images.unsplash.com/photo-1588513706482-665a468d601b?q=80&w=1000&auto=format&fit=crop",
+    title: "Profesjonalna pielęgnacja",
+    category: "Akcesoria",
+    url: port9,
   },
   {
     id: 10,
-    title: "Perfect Arch",
-    category: "Brwi",
-    url: "https://images.unsplash.com/photo-1516975080661-464a4b4e1f70?q=80&w=1000&auto=format&fit=crop",
+    title: "Artystyczne spojrzenie",
+    category: "Rzęsy",
+    url: port10,
   },
 ];
 
@@ -490,25 +544,46 @@ const loadMoreImages = () => {
   visibleCount.value += 4;
 };
 
-const getGridClass = (index) => {
-  const pattern = index % 6;
-  switch (pattern) {
-    case 0:
-      return "md:col-span-2 md:row-span-2";
-    case 1:
-      return "md:col-span-1 md:row-span-1";
-    case 2:
-      return "md:col-span-1 md:row-span-2";
-    case 3:
-      return "md:col-span-1 md:row-span-1";
-    case 4:
-      return "md:col-span-2 md:row-span-1";
-    case 5:
-      return "md:col-span-1 md:row-span-1";
-    default:
-      return "col-span-1 row-span-1";
-  }
+// Lightbox logic
+const isLightboxOpen = ref(false);
+const activeLightboxIndex = ref(0);
+
+const openLightbox = (index) => {
+  activeLightboxIndex.value = index;
+  isLightboxOpen.value = true;
+  document.body.style.overflow = "hidden";
 };
+
+const closeLightbox = () => {
+  isLightboxOpen.value = false;
+  document.body.style.overflow = "";
+};
+
+const nextLightboxImage = () => {
+  activeLightboxIndex.value =
+    (activeLightboxIndex.value + 1) % allGalleryItems.length;
+};
+
+const prevLightboxImage = () => {
+  activeLightboxIndex.value =
+    (activeLightboxIndex.value - 1 + allGalleryItems.length) %
+    allGalleryItems.length;
+};
+
+const handleKeydown = (e) => {
+  if (!isLightboxOpen.value) return;
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowRight") nextLightboxImage();
+  if (e.key === "ArrowLeft") prevLightboxImage();
+};
+
+onMounted(() => {
+  window.addEventListener("keydown", handleKeydown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleKeydown);
+});
 </script>
 
 <style scoped>
@@ -580,13 +655,13 @@ const getGridClass = (index) => {
 .portfolio-grid-move,
 .portfolio-grid-enter-active,
 .portfolio-grid-leave-active {
-  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .portfolio-grid-enter-from,
 .portfolio-grid-leave-to {
   opacity: 0;
-  transform: translateY(40px) scale(0.95);
+  transform: translateY(20px) scale(0.98);
 }
 
 .portfolio-grid-leave-active {
@@ -595,7 +670,7 @@ const getGridClass = (index) => {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 1.5s ease;
+  transition: opacity 0.3s ease;
 }
 
 .fade-enter-from,
