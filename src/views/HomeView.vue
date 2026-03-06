@@ -1,12 +1,12 @@
 <template>
   <div
-    class="min-h-screen bg-[#FCFAF8] text-[#1A1A1A] font-sans selection:bg-[#F2BFC6]/30 selection:text-[#1A1A1A]"
+    class="min-h-screen bg-[#FFF5F6] text-[#1A1A1A] font-sans selection:bg-[#F2BFC6]/30 selection:text-[#1A1A1A]"
   >
     <header
       class="relative min-h-screen flex items-center pt-24 overflow-hidden"
     >
       <div
-        class="absolute top-0 right-0 w-1/2 h-full bg-linear-to-b from-[#F2BFC6]/5 to-transparent -z-10"
+        class="absolute top-0 right-0 w-1/2 h-full bg-linear-to-b from-[#F2BFC6]/10 to-transparent -z-10"
       ></div>
 
       <div
@@ -38,8 +38,8 @@
           <p
             class="max-w-lg text-[#1A1A1A]/60 text-lg leading-relaxed font-light animate-reveal-4 opacity-0 [animation-fill-mode:forwards]"
           >
-            Ekskluzywna stylizacja rzęs i brwi w sercu Warszawy. Odkryj
-            precyzję, która wydobywa głębię Twojego spojrzenia.
+            Ekskluzywna stylizacja rzęs i brwi w Pilawie. Odkryj precyzję, która
+            wydobywa głębię Twojego spojrzenia.
           </p>
 
           <div
@@ -105,7 +105,7 @@
       </div>
     </header>
 
-    <section id="o-mnie" class="py-32 bg-white overflow-hidden relative">
+    <section id="o-mnie" class="py-32 bg-[#FDF2F4] overflow-hidden relative">
       <div
         class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center"
       >
@@ -174,7 +174,7 @@
       </div>
     </section>
 
-    <section id="oferta" class="py-32 bg-[#FCFAF8]">
+    <section id="oferta" class="py-32 bg-[#FFF5F6]">
       <div class="max-w-7xl mx-auto px-6">
         <div
           class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8"
@@ -182,7 +182,7 @@
           <div class="space-y-4">
             <span
               class="text-[#F2BFC6] uppercase tracking-[0.4em] text-[11px] font-bold"
-              >Nasze Usługi</span
+              >Moja Oferta</span
             >
             <h2 class="text-5xl md:text-6xl font-serif max-w-xl text-[#1A1A1A]">
               Rytuały piękna dostosowane do Ciebie
@@ -272,7 +272,7 @@
         <div class="mb-20 space-y-4">
           <span
             class="text-[#F2BFC6] uppercase tracking-[0.4em] text-[11px] font-bold"
-            >Nasze Portfolio</span
+            >Moje Portfolio</span
           >
           <h2
             class="text-5xl md:text-7xl font-light italic font-serif text-[#1A1A1A]"

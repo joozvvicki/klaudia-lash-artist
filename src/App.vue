@@ -1,19 +1,25 @@
 <template>
   <div
-    class="min-h-screen bg-[#FCFAF8] text-[#1A1A1A] font-sans selection:bg-[#F2BFC6]/30 selection:text-[#1A1A1A]"
+    class="min-h-screen bg-[#FFF5F6] text-[#1A1A1A] font-sans selection:bg-[#F2BFC6]/30 selection:text-[#1A1A1A]"
   >
     <nav
-      class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-[#1A1A1A]/5 transition-all duration-300"
+      :class="[
+        'fixed top-0 w-full z-50 transition-all duration-500 border-b',
+        isScrolled
+          ? 'bg-white/80 backdrop-blur-md border-[#1A1A1A]/5'
+          : 'bg-transparent border-transparent',
+      ]"
     >
       <div
-        class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between"
+        :class="[
+          'max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-500',
+          isScrolled ? 'h-20' : 'h-28',
+        ]"
       >
         <router-link to="/" class="flex items-center group cursor-pointer">
-          <img
-            src="/logo.png"
-            alt="Klaudia Lash Artist Logo"
-            class="h-12 w-auto logo-pink-filter transition-all duration-500"
-          />
+          <div
+            class="h-12 w-32 logo-icon bg-[#1A1A1A] group-hover:bg-[#F2BFC6] transition-all duration-500"
+          ></div>
         </router-link>
 
         <div
@@ -75,7 +81,7 @@
       class="bg-[#111] text-white py-32 relative overflow-hidden"
     >
       <div
-        class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#F2BFC6]/5 rounded-full blur-[100px] pointer-events-none"
+        class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#F2BFC6]/10 rounded-full blur-[100px] pointer-events-none"
       ></div>
 
       <div
@@ -83,14 +89,12 @@
       >
         <div class="lg:col-span-2 space-y-10">
           <div class="flex flex-col items-start translate-x-[-15px]">
-            <img
-              src="/logo.png"
-              alt="Klaudia Lash Artist Logo"
-              class="h-20 w-auto logo-pink-always transition-all duration-500"
-            />
+            <div
+              class="h-24 w-48 logo-icon bg-[#F2BFC6] transition-all duration-500 opacity-90 hover:opacity-100"
+            ></div>
           </div>
           <p class="max-w-sm text-white/50 text-sm leading-relaxed font-light">
-            Tworzymy piękno oparte na zaufaniu i profesjonalizmie. Zapraszam do
+            Tworzę piękno oparte na zaufaniu i profesjonalizmie. Zapraszam do
             świata, w którym Twoje spojrzenie jest priorytetem.
           </p>
         </div>
@@ -160,11 +164,25 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref, onMounted, onUnmounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
 const router = useRouter();
+
+const isScrolled = ref(false);
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 20;
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 
 const isHomePage = computed(() => route.path === "/");
 
@@ -217,26 +235,19 @@ const navLinks = [
   transform: translateY(-10px);
 }
 
-.logo-pink-filter {
-  transition: all 0.5s ease;
-  opacity: 0.9;
+.logo-icon {
+  background-size: contain;
+  background-position: left;
+  background-repeat: no-repeat;
+  mask-image: url("/logo.png");
+  -webkit-mask-image: url("/logo.png");
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
 }
 
-.logo-pink-filter:hover,
-.logo-pink-always {
-  /* Targeted filter for #F2BFC6 (Pastel Pink) - Precision adjustment */
-  filter: invert(86%) sepia(21%) saturate(927%) hue-rotate(301deg)
-    brightness(101%) contrast(92%);
-  opacity: 1;
-}
-
-.logo-pink-filter:hover {
-  transform: scale(1.05);
-}
-
-.logo-pink-always:hover {
-  filter: invert(88%) sepia(20%) saturate(1200%) hue-rotate(301deg)
-    brightness(105%) contrast(95%);
-  transform: scale(1.05);
+footer .logo-icon {
+  background-position: left;
 }
 </style>

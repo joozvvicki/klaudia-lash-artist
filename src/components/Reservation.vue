@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-[#FCFAF8] pt-32 pb-20 px-6 font-sans selection:bg-[#F2BFC6]/20"
+    class="min-h-screen bg-[#FFF5F6] pt-32 pb-20 px-6 font-sans selection:bg-[#F2BFC6]/20"
   >
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12 space-y-4">
@@ -43,7 +43,7 @@
               class="text-[#1A1A1A]/50 text-sm max-w-md mx-auto leading-relaxed"
             >
               Zarezerwuj wizytę w kilka sekund przez system Booksy. Wybierz
-              usługę i dogodny termin, a my zajmiemy się resztą.
+              usługę i dogodny termin, a ja zajmę się resztą.
             </p>
           </div>
 
