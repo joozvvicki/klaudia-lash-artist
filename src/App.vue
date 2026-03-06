@@ -86,7 +86,7 @@
             <img
               src="/logo.png"
               alt="Klaudia Lash Artist Logo"
-              class="h-20 w-auto logo-pink-filter transition-all duration-500"
+              class="h-20 w-auto logo-pink-always transition-all duration-500"
             />
           </div>
           <p class="max-w-sm text-white/50 text-sm leading-relaxed font-light">
@@ -222,11 +222,21 @@ const navLinks = [
   opacity: 0.9;
 }
 
-.logo-pink-filter:hover {
-  /* Targeted filter for #F2BFC6 (Pastel Pink) */
-  filter: invert(90%) sepia(15%) saturate(900%) hue-rotate(300deg)
-    brightness(102%) contrast(95%);
+.logo-pink-filter:hover,
+.logo-pink-always {
+  /* Targeted filter for #F2BFC6 (Pastel Pink) - Precision adjustment */
+  filter: invert(86%) sepia(21%) saturate(927%) hue-rotate(301deg)
+    brightness(101%) contrast(92%);
   opacity: 1;
+}
+
+.logo-pink-filter:hover {
+  transform: scale(1.05);
+}
+
+.logo-pink-always:hover {
+  filter: invert(88%) sepia(20%) saturate(1200%) hue-rotate(301deg)
+    brightness(105%) contrast(95%);
   transform: scale(1.05);
 }
 </style>
