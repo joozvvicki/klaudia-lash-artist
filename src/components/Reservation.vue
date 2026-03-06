@@ -77,7 +77,18 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+
+onMounted(() => {
+  document.title = "Rezerwacja | Klaudia Lash Artist";
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) {
+    metaDesc.setAttribute(
+      "content",
+      "Zarezerwuj wizytę u Klaudia Lash Artist w Pilawie. Wybierz dogodny termin na przedłużanie rzęs, laminację lub architekturę brwi przez system Booksy.",
+    );
+  }
+});
 
 const booksyUrl = ref(
   "https://booksy.com/pl-pl/288755_klaudia-lash-artist_brwi-i-rzesy_4754_pilawa#ba_s=sr_1",

@@ -56,17 +56,95 @@
           </router-link>
         </div>
 
-        <button class="lg:hidden text-2xl group">
+        <button
+          @click="toggleMenu"
+          class="lg:hidden relative z-50 w-10 h-10 flex flex-col justify-center items-center gap-1.5 focus:outline-none group"
+          aria-label="Toggle Menu"
+        >
           <span
-            class="block w-6 h-px bg-[#1A1A1A] mb-1.5 transition-all group-hover:w-4"
+            :class="[
+              'block w-6 h-0.5 bg-[#1A1A1A] transition-all duration-300 transform',
+              isMenuOpen ? 'rotate-45 translate-y-2' : '',
+            ]"
           ></span>
-          <span class="block w-6 h-px bg-[#1A1A1A] mb-1.5"></span>
           <span
-            class="block w-6 h-px bg-[#1A1A1A] transition-all group-hover:w-4"
+            :class="[
+              'block w-6 h-0.5 bg-[#1A1A1A] transition-all duration-300',
+              isMenuOpen ? 'opacity-0' : '',
+            ]"
+          ></span>
+          <span
+            :class="[
+              'block w-6 h-0.5 bg-[#1A1A1A] transition-all duration-300 transform',
+              isMenuOpen ? '-rotate-45 -translate-y-2' : '',
+            ]"
           ></span>
         </button>
       </div>
     </nav>
+
+    <!-- Full-screen Mobile Menu Overlay -->
+    <transition name="menu">
+      <div
+        v-if="isMenuOpen"
+        class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl lg:hidden flex flex-col pt-32 px-12"
+      >
+        <div class="flex-1 flex flex-col justify-center space-y-12">
+          <nav class="flex flex-col space-y-6">
+            <template v-for="(link, index) in navLinks" :key="link.name">
+              <div
+                class="overflow-hidden"
+                :style="{ transitionDelay: `${index * 100}ms` }"
+              >
+                <a
+                  v-if="link.href.startsWith('#')"
+                  :href="isHomePage ? link.href : '/' + link.href"
+                  @click="handleNavClick($event, link.href)"
+                  class="text-4xl font-serif italic text-[#1A1A1A] hover:text-[#F2BFC6] transition-colors duration-500 block"
+                >
+                  {{ link.name }}
+                </a>
+                <router-link
+                  v-else
+                  :to="link.href"
+                  @click="isMenuOpen = false"
+                  class="text-4xl font-serif italic text-[#1A1A1A] hover:text-[#F2BFC6] transition-colors duration-500 block"
+                >
+                  {{ link.name }}
+                </router-link>
+              </div>
+            </template>
+          </nav>
+
+          <div class="pt-12 border-t border-[#1A1A1A]/5 mt-auto pb-12">
+            <h4
+              class="text-[10px] uppercase tracking-[0.4em] text-[#F2BFC6] font-bold mb-6"
+            >
+              Znajdź mnie
+            </h4>
+            <div class="flex flex-col space-y-4 text-lg font-light">
+              <a
+                href="https://www.instagram.com/klaudia_lashartist/?hl=en"
+                class="text-[#1A1A1A]/60 hover:text-[#F2BFC6] transition-colors"
+                >Instagram</a
+              >
+              <a
+                href="https://www.facebook.com/p/Klaudia-Lash-Artist-100086759595793/"
+                class="text-[#1A1A1A]/60 hover:text-[#F2BFC6] transition-colors"
+                >Facebook</a
+              >
+            </div>
+            <router-link
+              to="/rezerwacja"
+              @click="isMenuOpen = false"
+              class="inline-block mt-12 bg-[#1A1A1A] text-white px-10 py-5 text-sm uppercase tracking-[0.2em] font-semibold w-full text-center"
+            >
+              Zarezerwuj teraz
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </transition>
 
     <main>
       <router-view v-slot="{ Component }">
@@ -184,9 +262,23 @@ onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
 });
 
+const isMenuOpen = ref(false);
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+  if (isMenuOpen.value) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+};
+
 const isHomePage = computed(() => route.path === "/");
 
 const handleNavClick = (e, href) => {
+  isMenuOpen.value = false;
+  document.body.style.overflow = "";
+
   if (href.startsWith("#") && !isHomePage.value) {
     e.preventDefault();
     router.push("/" + href);
@@ -233,6 +325,32 @@ const navLinks = [
 .page-leave-to {
   opacity: 0;
   transform: translateY(-10px);
+}
+
+/* Mobile Menu Transitions */
+.menu-enter-active,
+.menu-leave-active {
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menu-enter-from,
+.menu-leave-to {
+  opacity: 0;
+}
+
+.menu-enter-active nav div {
+  animation: menuLinkIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes menuLinkIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .logo-icon {

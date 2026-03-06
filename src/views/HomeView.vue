@@ -3,40 +3,56 @@
     class="min-h-screen bg-[#FFF5F6] text-[#1A1A1A] font-sans selection:bg-[#F2BFC6]/30 selection:text-[#1A1A1A]"
   >
     <header
-      class="relative min-h-screen flex items-center pt-24 overflow-hidden"
+      class="relative h-svh lg:min-h-screen flex items-end lg:items-center pb-20 lg:pb-0 lg:pt-24 overflow-hidden"
     >
+      <!-- Dedicated Mobile Background (Truly Fullscreen) -->
+      <div class="absolute inset-0 z-0 lg:hidden">
+        <img
+          :src="photo7"
+          alt="Premium Beauty"
+          class="w-full h-full object-cover"
+        />
+        <div
+          class="absolute inset-0 bg-linear-to-t from-[#1A1A1A]/80 via-[#1A1A1A]/20 to-transparent"
+        ></div>
+      </div>
+
       <div
         class="absolute top-0 right-0 w-1/2 h-full bg-linear-to-b from-[#F2BFC6]/10 to-transparent -z-10"
       ></div>
 
       <div
-        class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative w-full"
+        class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative w-full z-10"
       >
-        <div class="lg:col-span-7 space-y-8 z-10 pt-10 lg:pt-0">
-          <div class="overflow-hidden">
+        <div
+          class="lg:col-span-7 space-y-6 lg:space-y-8 z-20 lg:pt-0 order-2 lg:order-1 flex flex-col lg:justify-center lg:min-h-0"
+        >
+          <div>
             <span
-              class="inline-block border border-[#F2BFC6]/30 rounded-full px-4 py-1 text-[#F2BFC6] uppercase tracking-[0.4em] text-[10px] font-semibold animate-reveal-1"
+              class="inline-block border border-white/30 lg:border-[#F2BFC6]/30 rounded-full px-4 py-1 text-white lg:text-[#F2BFC6] uppercase tracking-[0.4em] text-[10px] font-semibold animate-reveal-1"
             >
               Premium Beauty Experience
             </span>
           </div>
 
           <h1
-            class="text-6xl sm:text-7xl lg:text-8xl leading-[1.1] font-serif flex flex-col"
+            class="text-5xl sm:text-7xl lg:text-8xl leading-[1.1] font-serif flex flex-col text-white lg:text-[#1A1A1A]"
           >
             <span class="overflow-hidden pb-2">
-              <span class="inline-block animate-reveal-2">Podkreśl</span>
+              <span class="inline-block animate-reveal-2 drop-shadow-sm"
+                >Podkreśl</span
+              >
             </span>
             <span class="overflow-hidden pb-4">
               <span
-                class="inline-block italic font-light text-[#F2BFC6] animate-reveal-3"
+                class="inline-block italic font-light text-[#F2BFC6] animate-reveal-3 drop-shadow-sm"
                 >swoje piękno.</span
               >
             </span>
           </h1>
 
           <p
-            class="max-w-lg text-[#1A1A1A]/60 text-lg leading-relaxed font-light animate-reveal-4 opacity-0 [animation-fill-mode:forwards]"
+            class="max-w-lg text-white/80 lg:text-[#1A1A1A]/60 text-base lg:text-lg leading-relaxed font-light animate-reveal-4 opacity-0 [animation-fill-mode:forwards]"
           >
             Ekskluzywna stylizacja rzęs i brwi w Pilawie. Odkryj precyzję, która
             wydobywa głębię Twojego spojrzenia.
@@ -47,13 +63,13 @@
           >
             <router-link
               to="/rezerwacja"
-              class="bg-[#1A1A1A] text-white px-10 py-5 hover:bg-[#F2BFC6] hover:-translate-y-1 transition-all duration-500 text-xs uppercase tracking-[0.3em] font-semibold shadow-xl shadow-[#1A1A1A]/10 text-center"
+              class="bg-white lg:bg-[#1A1A1A] text-[#1A1A1A] lg:text-white px-8 lg:px-10 py-4 lg:py-5 hover:bg-[#F2BFC6] hover:text-white lg:hover:text-white hover:-translate-y-1 transition-all duration-500 text-[10px] lg:text-xs uppercase tracking-[0.3em] font-semibold shadow-xl shadow-black/20 text-center"
             >
               Umów wizytę
             </router-link>
             <a
               href="#portfolio"
-              class="group border border-[#1A1A1A]/20 px-10 py-5 hover:border-[#1A1A1A] transition-all duration-500 text-xs uppercase tracking-[0.3em] font-semibold flex justify-center items-center"
+              class="group border border-white/30 lg:border-[#1A1A1A]/20 bg-white/10 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none px-8 lg:px-10 py-4 lg:py-5 text-white lg:text-[#1A1A1A] hover:border-white lg:hover:border-[#1A1A1A] transition-all duration-500 text-[10px] lg:text-xs uppercase tracking-[0.3em] font-semibold flex justify-center items-center"
             >
               Eksploruj portfolio
               <span
@@ -65,8 +81,9 @@
         </div>
 
         <div
-          class="lg:col-span-5 relative group mt-10 lg:mt-0 animate-reveal-6 opacity-0 [animation-fill-mode:forwards]"
+          class="lg:col-span-5 lg:relative group lg:mt-0 animate-reveal-6 opacity-0 [animation-fill-mode:forwards] order-1 lg:order-2 lg:z-10 hidden lg:block"
         >
+          <!-- Decorative blurred elements -->
           <div
             class="absolute -bottom-10 -left-10 w-72 h-72 bg-[#F2BFC6]/20 rounded-full blur-3xl z-0 animate-float"
           ></div>
@@ -75,10 +92,10 @@
           ></div>
 
           <div
-            class="relative z-10 p-2 border border-[#F2BFC6]/30 rounded-t-[20rem] rounded-b-md bg-white/50 backdrop-blur-sm shadow-2xl"
+            class="relative h-full w-full lg:p-2 lg:border lg:border-[#F2BFC6]/30 lg:rounded-t-[20rem] lg:rounded-b-md lg:bg-white/50 lg:backdrop-blur-sm lg:shadow-2xl overflow-hidden"
           >
             <div
-              class="relative aspect-3/4 overflow-hidden rounded-t-[20rem] rounded-b-sm"
+              class="relative h-full w-full lg:aspect-3/4 overflow-hidden lg:rounded-t-[20rem] lg:rounded-b-sm"
             >
               <img
                 :src="photo7"
@@ -86,41 +103,36 @@
                 class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.05]"
               />
               <div
-                class="absolute inset-0 bg-linear-to-t from-[#1A1A1A]/20 to-transparent mix-blend-multiply"
+                class="absolute inset-0 bg-linear-to-t from-[#1A1A1A]/10 to-transparent mix-blend-multiply"
               ></div>
             </div>
           </div>
         </div>
       </div>
-
-      <div
-        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 animate-bounce-slow"
-      >
-        <span class="text-[9px] uppercase tracking-[0.4em] text-[#F2BFC6]"
-          >Scroll</span
-        >
-        <div
-          class="w-px h-12 bg-linear-to-b from-[#F2BFC6] to-transparent"
-        ></div>
-      </div>
     </header>
 
-    <section id="o-mnie" class="py-32 bg-[#FDF2F4] overflow-hidden relative">
+    <section
+      id="o-mnie"
+      class="py-20 lg:py-32 bg-[#FDF2F4] overflow-hidden relative min-h-svh flex items-center"
+    >
       <div
-        class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center"
+        class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center w-full"
       >
-        <div class="space-y-8 order-2 lg:order-1 relative z-10">
+        <div class="space-y-6 lg:space-y-8 order-2 lg:order-1 relative z-10">
           <span
-            class="text-[#F2BFC6] uppercase tracking-[0.4em] text-[11px] font-bold"
+            class="text-[#F2BFC6] uppercase tracking-[0.4em] text-[10px] lg:text-[11px] font-bold mb-4 block"
             >O Mnie</span
           >
-          <h2
-            class="text-5xl md:text-6xl font-serif leading-tight text-[#1A1A1A]"
-          >
-            Pasja ukryta <br />w każdym detalu.
-          </h2>
+          <transition name="page" mode="out-in">
+            <h2
+              :key="activePhotoIndex"
+              class="text-4xl lg:text-6xl font-serif leading-tight text-[#1A1A1A] mb-4"
+            >
+              {{ aboutContent[activePhotoIndex].title }}
+            </h2>
+          </transition>
           <div
-            class="space-y-6 text-[#1A1A1A]/70 text-lg leading-relaxed font-light min-h-[120px]"
+            class="space-y-4 lg:space-y-6 text-[#1A1A1A]/70 text-base lg:text-lg leading-relaxed font-light min-h-[100px] lg:min-h-[120px]"
           >
             <transition name="page" mode="out-in">
               <p :key="activePhotoIndex">
@@ -128,18 +140,20 @@
               </p>
             </transition>
           </div>
-          <div class="flex items-center gap-4 pt-4">
+          <div class="flex items-center gap-4 pt-2 lg:pt-4 mb-4 lg:mb-0">
             <div class="w-12 h-px bg-[#F2BFC6]"></div>
-            <span class="italic font-serif text-xl text-[#1A1A1A]"
+            <span class="italic font-serif text-lg lg:text-xl text-[#1A1A1A]"
               >Twoja Lash Artystka</span
             >
           </div>
         </div>
 
         <div
-          class="relative h-[600px] flex justify-center items-center order-1 lg:order-2"
+          class="relative h-[40svh] lg:h-[600px] flex justify-center items-center order-1 lg:order-2 mb-12 lg:mb-0"
         >
-          <div class="relative w-full max-w-[320px] aspect-4/5">
+          <div
+            class="relative w-full max-w-[260px] lg:max-w-[320px] aspect-4/5"
+          >
             <div
               v-for="(photo, index) in aboutContent"
               :key="index"
@@ -150,7 +164,7 @@
               ]"
             >
               <div
-                class="w-full h-full bg-white p-3 pb-20 border border-[#1A1A1A]/5 group-hover:border-[#F2BFC6]/30 transition-colors duration-500 rounded-sm"
+                class="w-full h-full bg-white p-2 lg:p-3 pb-12 lg:pb-20 border border-[#1A1A1A]/5 group-hover:border-[#F2BFC6]/30 transition-colors duration-500 rounded-sm"
                 :class="activePhotoIndex === index ? 'shadow-2xl' : 'shadow-lg'"
               >
                 <img
@@ -167,7 +181,7 @@
             </div>
           </div>
           <span
-            class="absolute -bottom-10 right-0 text-[140px] font-serif text-[#F2BFC6]/5 select-none pointer-events-none italic"
+            class="absolute -bottom-6 lg:-bottom-10 right-0 text-[80px] lg:text-[140px] font-serif text-[#F2BFC6]/5 select-none pointer-events-none italic"
             >Art</span
           >
         </div>
@@ -381,6 +395,17 @@
 import { computed, ref, onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
 
+onMounted(() => {
+  document.title = "Klaudia Lash Artist | Stylizacja Rzęs i Brwi Pilawa";
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) {
+    metaDesc.setAttribute(
+      "content",
+      "Profesjonalna stylizacja rzęs i brwi w Pilawie. Przedłużanie rzęs, laminacja, henna pudrowa. Podkreśl swoje naturalne piękno z Klaudia Lash Artist.",
+    );
+  }
+});
+
 import services from "../data/services.json";
 
 import photo1 from "../assets/1.jpeg";
@@ -445,30 +470,37 @@ const goToReservation = (service) => {
 const aboutContent = [
   {
     url: photo1,
+    title: "Pasja ukryta w każdym detalu.",
     desc: "Precyzja to mój fundament. Każda rzęsa to dla mnie odrębna historia, którą wspólnie piszemy każdego dnia w moim studio.",
   },
   {
     url: photo2,
+    title: "Twoja chwila na relaks.",
     desc: "Relaks i piękno idą w parze. Tworzę przestrzeń, w której możesz na chwilę zapomnieć o świecie i skupić się wyłącznie na sobie.",
   },
   {
     url: photo3,
+    title: "Naturalność to podstawa.",
     desc: "Naturalność przede wszystkim. Wydobywam to, co w Tobie najpiękniejsze, podkreślając spojrzenie w sposób subtelny i autentyczny.",
   },
   {
     url: photo4,
+    title: "Miejsce pełne dobrej energii.",
     desc: "Moja pracownia to miejsce magiczne, gdzie techniczna precyzja spotyka się z pasją i kobiecą energią, której potrzebujesz.",
   },
   {
     url: photo5,
+    title: "Stale dbam o jakość.",
     desc: "Ciągły rozwój to moja obietnica. Regularnie szkolę się u najlepszych ekspertów, by oferować Ci najnowsze światowe trendy.",
   },
   {
     url: photo6,
+    title: "Bezpieczeństwo bez kompromisów.",
     desc: "Najwyższa jakość produktów to standard, na którym nie uznaję kompromisów. Twoje bezpieczeństwo i komfort są dla mnie priorytetem.",
   },
   {
     url: photo7,
+    title: "Twoje zadowolenie to moja pasja.",
     desc: "Twoje zadowolenie i uśmiech po spojrzeniu w lustro to moja największa nagroda. To dla tych chwil kocham to, co robię.",
   },
 ];
@@ -480,7 +512,7 @@ const startAboutTimer = () => {
   if (aboutTimer) clearInterval(aboutTimer);
   aboutTimer = setInterval(() => {
     activePhotoIndex.value = (activePhotoIndex.value + 1) % aboutContent.length;
-  }, 7000);
+  }, 12000);
 };
 
 const setActivePhoto = (index) => {
